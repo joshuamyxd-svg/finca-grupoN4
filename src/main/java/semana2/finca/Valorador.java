@@ -1,11 +1,20 @@
-package semana2.finca;
+package semana2.finca; // O el paquete donde lo tengas ubicado
+
+import ec.edu.uagraria.riegosmart.dominio.Cultivo;
+import ec.edu.uagraria.riegosmart.dominio.InsumoRiego;
+import ec.edu.uagraria.riegosmart.dominio.TurnoRiego;
 
 public class Valorador {
-    public static double valor(Activo activo) {
-        return switch (activo) {
-            case Producto p -> p.precioUnitario() * p.unidades();
-            case Cultivo c  -> c.hectareas() * c.costoPorHectarea();
-            case Animal a   -> a.pesoKg() * a.precioPorKg();
-        };  // sin default: la interfaz es sealed
+
+    // Ejemplo de método que calcula o procesa información usando el Cultivo
+    public double calcularValorCultivo(Cultivo cultivo, double costoPorHectarea) {
+        // Usa el método hectareas() que definimos en el record Cultivo
+        return cultivo.hectareas() * costoPorHectarea;
+    }
+
+    public void mostrarDetalleCultivo(Cultivo cultivo) {
+        System.out.println("Código: " + cultivo.codigo());
+        System.out.println("Nombre: " + cultivo.nombre());
+        System.out.println("Hectáreas: " + cultivo.hectareas());
     }
 }
